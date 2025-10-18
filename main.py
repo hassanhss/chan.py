@@ -3,9 +3,14 @@ from ChanConfig import CChanConfig
 from Common.CEnum import AUTYPE, DATA_SRC, KL_TYPE
 from Plot.AnimatePlotDriver import CAnimateDriver
 from Plot.PlotDriver import CPlotDriver
+import dotenv
+import os
+
+# 加载当前目录下的.env文件
+dotenv.load_dotenv()
 
 if __name__ == "__main__":
-    code = "sz.000001"
+    code = os.getenv("code")
     begin_time = "2018-01-01"
     end_time = None
     data_src = DATA_SRC.BAO_STOCK
@@ -79,7 +84,7 @@ if __name__ == "__main__":
             plot_para=plot_para,
         )
         plot_driver.figure.show()
-        plot_driver.save2img("./test.png")
+        plot_driver.save2img(code+ ".png")
     else:
         CAnimateDriver(
             chan,
