@@ -84,7 +84,10 @@ if __name__ == "__main__":
             plot_para=plot_para,
         )
         plot_driver.figure.show()
-        plot_driver.save2img(code+ ".png")
+        if code is not None:
+            plot_driver.figure.savefig(code + ".png")
+        else:
+            print("Error: 'code' is not set. Cannot save image.")
     else:
         CAnimateDriver(
             chan,
